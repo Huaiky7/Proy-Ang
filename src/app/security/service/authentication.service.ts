@@ -3,17 +3,15 @@ import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {Router} from '@angular/router';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {catchError, filter, map, tap} from 'rxjs/operators';
+import {catchError, filter, tap} from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {User} from '../../domain/user';
-import {Resp} from '../../domain/resp';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   private jwtHelper: JwtHelperService = new JwtHelperService();
-  response: Resp;
   private _loggedIn: BehaviorSubject<User> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -24,17 +22,17 @@ export class AuthenticationService {
       password
     };
 
-    return this.http.post(environment.backendURL + 'login', body)
-      .pipe(tap(res => {
-        this.response = res;
-        localStorage.setItem(environment.tokenName, this.response.token);
-        const decodedToken = this.jwtHelper.decodeToken(this.response.token);
-        const user: User = new User({username: decodedToken.username});
+    return this.http.post<any>(environment.backendURL + 'login', body)
+      .pipe(
+        tap(res => {
+        localStorage.setItem(environment.tokenName, res.token);
+        let decodedToken = this.jwtHelper.decodeToken(res.token);
+        let user: User = new User({username: decodedToken.username});
         this._loggedIn.next(user);
       }),
-        catchError(res => {
+        catchError(error => {
           let errorMsg: string;
-          switch (res.status) {
+          switch (error.status) {
             case 401:
               errorMsg = 'Usuario o Contraseña incorrectos';
               break;

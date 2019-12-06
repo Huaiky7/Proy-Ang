@@ -12,7 +12,8 @@
 
       <mat-form-field>
         <mat-label>Marca</mat-label>
-        <mat-select formControlName="brand" (selectionChange)="cmbBrand()">
+        <mat-select formControlName="brand" [compareWith]="compare"
+                    (selectionChange)="cmbBrand()">
 
           <mat-option *ngFor="let brand of brands"
                       [value]="brand">
@@ -24,7 +25,7 @@
 
       <mat-form-field>
         <mat-label>Modelo</mat-label>
-        <mat-select formControlName="model">
+        <mat-select formControlName="model" [compareWith]="compare">
           <mat-option *ngFor="let model of models" [value]="model">
             {{model.name}}
           </mat-option>

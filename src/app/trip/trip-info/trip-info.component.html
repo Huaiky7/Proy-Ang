@@ -36,7 +36,7 @@
 
         <mat-form-field>
           <mat-label>Colectivo</mat-label>
-          <mat-select formControlName="bus">
+          <mat-select formControlName="bus" [compareWith]="compareBus">
             <mat-option *ngFor="let bus of buses"
                         [value]="bus">
               {{bus.licensePlate}}

@@ -70,4 +70,8 @@ export class TripInfoComponent implements OnInit {
         this.router.navigate(['home/home/trip/list']);
       });
   }
+
+  compareBus(bus1, bus2) {
+    return bus1.id === bus2.id;
+  }
 }

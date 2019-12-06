@@ -46,8 +46,12 @@ export class BusInfoComponent implements OnInit {
           this.bus = bus;
           this.busForm.patchValue({
             id: this.bus.id, licensePlate: this.bus.licensePlate, numberOfSeats: this.bus.numberOfSeats,
-            brand: this.bus.model.brand.name, model: this.bus.model
+            brand: this.bus.model.brand, model: this.bus.model
         });
+
+          this.modelService.findAllByBrand(this.bus.model.brand.id).subscribe(list => {
+            this.models = list;
+          } );
       });
     });
   }
@@ -68,5 +72,9 @@ export class BusInfoComponent implements OnInit {
           this.router.navigate(['home/home/bus/list']);
         }
       );
+  }
+
+  compare(item1, item2) {
+    return item1.id === item2.id;
   }
 }

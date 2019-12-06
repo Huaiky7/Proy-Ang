@@ -1,0 +1,48 @@
+<mat-card style="width: 40%; margin-left: 30%">
+
+  <h5>Crear Viaje</h5>
+
+  <form [formGroup] = tripForm (ngSubmit)="saveData()" novalidate>
+
+    <div class="example-container">
+
+      <mat-form-field>
+        <input matInput placeholder="Origen" formControlName="departure">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Destino" formControlName="destination">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="salida"
+               placeholder="Salida"
+               formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="salida"></mat-datepicker-toggle>
+        <mat-datepicker #salida></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="llegada"
+               placeholder="Llegada"
+               formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="llegada"></mat-datepicker-toggle>
+        <mat-datepicker #llegada></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Colectivo</mat-label>
+        <mat-select formControlName="bus">
+          <mat-option *ngFor="let bus of buses"
+                      [value]="bus">
+            {{bus.licensePlate}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button type="submit" [disabled]="tripForm.invalid">Guardar</button>
+
+  </form>
+
+</mat-card>

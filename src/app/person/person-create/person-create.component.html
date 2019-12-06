@@ -1,0 +1,40 @@
+
+<mat-card style="width: 50%; margin-left: 10%">
+
+  <h5>Alta de Persona</h5>
+
+  <form [formGroup] = personForm (ngSubmit)="saveData()" novalidate>
+
+    <div class="example-container">
+
+      <mat-form-field>
+        <input matInput type="text" placeholder="Nombre" formControlName="firstName">
+        <div class="msg-error" *ngIf="personForm.controls.firstName.invalid && (personForm.controls.firstName.dirty || personForm.controls.firstName.touched)"
+             style="color: red;">
+          <span *ngIf="personForm.controls.firstName.errors.required">
+            Este Campo es Requerido
+          </span>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="text" placeholder="Apellido" formControlName="lastName">
+        <div class="msg-error" *ngIf="personForm.controls.lastName.invalid && (personForm.controls.lastName.dirty || personForm.controls.lastName.touched)"
+             style="color: red;">
+          <span *ngIf="personForm.controls.lastName.errors.required">
+            Este Campo es Requerido
+          </span>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="number" placeholder="Edad" formControlName="age">
+      </mat-form-field>
+
+    </div>
+
+    <button type="submit" [disabled]="personForm.invalid">Guardar</button>
+
+  </form>
+
+</mat-card>

@@ -1,0 +1,17 @@
+.selected {
+  color: red;
+}
+
+.example-container {
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 47%;
+  margin: 7px;
+}
+
+.msg-error {
+  font-size: small;
+  margin: 0px;
+}

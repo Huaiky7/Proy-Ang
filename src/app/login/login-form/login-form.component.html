@@ -1,0 +1,28 @@
+
+<mat-card style="width: 40%; margin-left: 30%; margin-top: 100px;">
+
+  <h3>Ingreso Al Sistema</h3>
+
+  <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Nombre de usuario" formControlName="username">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="password" placeholder="Contraseña" formControlName="password">
+      </mat-form-field>
+
+      <div class="msg-error"
+           *ngIf="errorLogin"
+           style="color: red;">{{ errorMsg }}
+
+      </div>
+
+
+      <button mat-raised-button class="btn-teal" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+    </div>
+  </form>
+
+</mat-card>

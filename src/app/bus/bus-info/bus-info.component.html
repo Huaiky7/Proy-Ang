@@ -1,0 +1,42 @@
+<mat-card style="width: 40%; margin-left: 30%">
+
+  <h5>Editar Colectivo</h5>
+
+  <form [formGroup] = busForm (ngSubmit)="saveData()" novalidate>
+
+    <div class="example-container">
+
+      <mat-form-field>
+        <input matInput placeholder="Patente" formControlName="licensePlate">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Marca</mat-label>
+        <mat-select formControlName="brand" (selectionChange)="cmbBrand()">
+
+          <mat-option *ngFor="let brand of brands"
+                      [value]="brand">
+            {{brand.name}}
+          </mat-option>
+
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Modelo</mat-label>
+        <mat-select formControlName="model">
+          <mat-option *ngFor="let model of models" [value]="model">
+            {{model.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Cantidad De Asientos" formControlName="numberOfSeats">
+      </mat-form-field>
+
+      <button type="submit" [disabled]="busForm.invalid">Guardar</button>
+    </div>
+  </form>
+
+</mat-card>

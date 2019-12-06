@@ -1,0 +1,39 @@
+
+<mat-card style="width: 40%; margin-left: 30%">
+
+  <h5>Editar Persona</h5>
+
+  <form [formGroup] = personForm (ngSubmit)="saveData()" novalidate>
+
+    <div class="example-container">
+
+      <mat-form-field>
+        <input matInput placeholder="Nombre" formControlName="firstName">
+      </mat-form-field>
+      <div *ngIf="personForm.controls.firstName.invalid && (personForm.controls.firstName.dirty || personForm.controls.firstName.touched)"
+           style="color: red;">
+          <span *ngIf="personForm.controls.firstName.errors.required">
+            Este Campo es Requerido
+          </span>
+      </div>
+
+      <mat-form-field>
+        <input matInput placeholder="Apellido" formControlName="lastName">
+      </mat-form-field>
+
+      <div *ngIf="personForm.controls.lastName.invalid && (personForm.controls.lastName.dirty || personForm.controls.lastName.touched)"
+           style="color: red;">
+          <span *ngIf="personForm.controls.lastName.errors.required">
+            Este Campo es Requerido
+          </span>
+      </div>
+
+      <mat-form-field>
+        <input matInput placeholder="Edad" formControlName="age">
+      </mat-form-field>
+
+      <button type="submit" [disabled]="personForm.invalid">Guardar</button>
+    </div>
+  </form>
+
+</mat-card>

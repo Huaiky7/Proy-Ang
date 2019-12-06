@@ -1,0 +1,39 @@
+
+<mat-toolbar class="toolbar">
+  <mat-toolbar-row>
+    <span style="color: white">
+      <mat-icon style="margin-right: 5px; vertical-align: middle;">room</mat-icon>Sistema de Viajes
+    </span>
+
+    <button mat-raised-button color="primary" type="button" (click)="salir()" style="left: 1216px;">Salir</button>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <p><button mat-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button></p>
+
+  <div style="width: 80%; margin-left: 10%">
+    <router-outlet></router-outlet>
+  </div>
+
+  <mat-sidenav class="sidebar" #sidenav mode="side" [(opened)]="opened">
+
+    <mat-nav-list>
+      <a mat-list-item href="#/home/home/trip">
+        <mat-icon style="margin-right: 7px;">near_me</mat-icon> Gestion de Viajes
+      </a>
+
+      <a mat-list-item href="#/home/home/bus">
+        <mat-icon style="margin-right: 7px;">directions_bus</mat-icon> Gestion de Colectivos </a>
+
+      <a mat-list-item href="#/home/home/person">
+        <mat-icon style="margin-right: 7px;">person</mat-icon> Gestion de Personas </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+</mat-sidenav-container>
+
+
+

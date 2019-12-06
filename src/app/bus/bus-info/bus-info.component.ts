@@ -41,15 +41,12 @@ export class BusInfoComponent implements OnInit {
     });
 
     this.route.paramMap.subscribe(params => {
-      this.busService.findOne(+params.get('id')).subscribe(bus => {
-        this.bus = bus;
-
-        this.busForm.patchValue({
-          id: this.bus.id,
-          licensePlate: this.bus.licensePlate,
-          numberOfSeats: this.bus.numberOfSeats,
-          brand: this.bus.model.brand.name,
-          model: this.bus.model
+      this.busService.findOne(+params.get('id'))
+        .subscribe(bus => {
+          this.bus = bus;
+          this.busForm.patchValue({
+            id: this.bus.id, licensePlate: this.bus.licensePlate, numberOfSeats: this.bus.numberOfSeats,
+            brand: this.bus.model.brand.name, model: this.bus.model
         });
       });
     });
@@ -66,9 +63,10 @@ export class BusInfoComponent implements OnInit {
       this.bus.id,
       this.busForm.getRawValue().licensePlate,
       this.busForm.getRawValue().model,
-      this.busForm.getRawValue().numberOfSeats);
-
-    this.router.navigate(['home/home/bus/list']);
-
+      this.busForm.getRawValue().numberOfSeats)
+      .subscribe(token => {
+          this.router.navigate(['home/home/bus/list']);
+        }
+      );
   }
 }

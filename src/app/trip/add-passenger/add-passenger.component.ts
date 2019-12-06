@@ -72,14 +72,16 @@ export class AddPassengerComponent implements OnInit {
       this.trip.startDate,
       this.trip.endDate,
       this.trip.bus,
-      this.trip.passengers).subscribe( next => {
-        this.tripService.findOne(this.trip.id).subscribe(trip => {
-          this.trip = trip;
-          this.passengers = trip.passengers;
-          if (this.passengers.length >= this.trip.bus.numberOfSeats){
-            this.passengerCtrl.disable();
-            this.disabled = true;
-          }
+      this.trip.passengers)
+      .subscribe( next => {
+        this.tripService.findOne(this.trip.id)
+          .subscribe(trip => {
+            this.trip = trip;
+            this.passengers = trip.passengers;
+            if (this.passengers.length >= this.trip.bus.numberOfSeats){
+              this.passengerCtrl.disable();
+              this.disabled = true;
+            }
         });
       });
     }

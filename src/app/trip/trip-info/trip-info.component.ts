@@ -64,9 +64,10 @@ export class TripInfoComponent implements OnInit {
       +new Date(this.tripForm.getRawValue().startDate) / 1000,
       +new Date(this.tripForm.getRawValue().endDate) / 1000,
       this.tripForm.getRawValue().bus,
-      this.passengers);
+      this.passengers)
 
-    this.router.navigate(['home/home/trip/list']);
-
+      .subscribe(trip => {
+        this.router.navigate(['home/home/trip/list']);
+      });
   }
 }

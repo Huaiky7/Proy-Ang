@@ -24,6 +24,8 @@ export class BusCreateComponent implements OnInit {
   busForm: FormGroup;
   brands: Brand[];
   models: Model[];
+  error: boolean;
+  errorMsg: string;
 
   ngOnInit() {
     this.brandService.findAll().subscribe(list => this.brands = list );
@@ -46,9 +48,14 @@ export class BusCreateComponent implements OnInit {
     this.busService.create(
       this.busForm.getRawValue().licensePlate,
       this.busForm.getRawValue().model,
-      this.busForm.getRawValue().numberOfSeats);
-
-    this.router.navigate(['home/home/bus/list']);
-
+      this.busForm.getRawValue().numberOfSeats)
+      .subscribe(bus => {
+          this.router.navigate(['home/home/bus/list']);
+        },
+        error => {
+          this.error = true;
+          this.errorMsg = error;
+        }
+      );
   }
 }

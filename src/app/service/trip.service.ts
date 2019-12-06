@@ -56,7 +56,6 @@ export class TripService {
       endDate
     };
 
-    console.log(body);
     this.httpClient.post(environment.backendURL + 'trips', body).subscribe();
   }
 }
